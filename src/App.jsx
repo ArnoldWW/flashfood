@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { Toaster } from "react-hot-toast";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -12,9 +13,7 @@ function App() {
         <Outlet />
       </main>
 
-      <footer className="container border-t py-5 text-center">
-        <p>Todos los derechos reservados &copy; FlashFood.</p>
-      </footer>
+      <Footer />
 
       <Toaster position="top-right" reverseOrder={false} />
     </CartProvider>
