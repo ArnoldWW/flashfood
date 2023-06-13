@@ -161,6 +161,7 @@ const CartProvider = ({ children }) => {
     if (res) {
       const updatedCart = cart.filter((item) => item.id !== id);
       setCart(updatedCart);
+      toast.success("¡Producto eliminado del carrito!");
     }
   };
 
