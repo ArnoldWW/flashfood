@@ -16,7 +16,7 @@ function App() {
         <p>Todos los derechos reservados &copy; FlashFood.</p>
       </footer>
 
-      <Toaster />
+      <Toaster position="top-right" reverseOrder={false} />
     </CartProvider>
   );
 }
