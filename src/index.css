@@ -25,4 +25,7 @@ body {
   .btn:hover {
     @apply bg-orange-500;
   }
+  .link {
+    @apply underline font-bold;
+  }
 }

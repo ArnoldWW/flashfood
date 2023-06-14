@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartContext from "../context/CartContext";
+import Logo from "./Logo";
 
 const Header = () => {
   const { cart } = useContext(CartContext);
@@ -8,9 +9,7 @@ const Header = () => {
   return (
     <header className="w-full sticky top-0 z-10 bg-white">
       <div className="flex flex-col justify-center items-center container py-5 gap-3 border-b">
-        <Link to="/" className="w-28">
-          <img src="/logo.svg" />
-        </Link>
+        <Logo />
 
         <nav className="flex justify-center gap-5 w-full">
           <Link to="/">Inicio</Link>

@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import Home from "./routes/home.jsx";
 import Menu from "./routes/menu.jsx";
 import Cart from "./routes/cart.jsx";
+import NotFound from "./routes/NotFound.jsx";
 
 import {
   createBrowserRouter,
@@ -30,7 +31,7 @@ import "./index.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />} errorElement={<p>Page not found!</p>}>
+    <Route path="/" element={<App />} errorElement={<NotFound />}>
       <Route>
         <Route index element={<Home />} />
         <Route path="/menu" element={<Menu />} />
