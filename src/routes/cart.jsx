@@ -18,8 +18,9 @@ const Cart = () => {
         )}
       </section>
 
-      <section>
-        <h3 className="h3 text-right">Total a pagar: ${totalPay}</h3>
+      <section className="py-5 flex flex-col justify-center items-end">
+        <h3 className="h3">Total a pagar: ${totalPay}</h3>
+        {cart.length > 0 && <button className="btn my-2">Realizar Pago</button>}
       </section>
     </>
   );
