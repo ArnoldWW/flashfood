@@ -23,9 +23,12 @@ body {
     @apply bg-orange-400 py-2 px-5 w-full font-bold capitalize;
   }
   .btn:hover {
-    @apply bg-orange-500;
+    @apply bg-orange-500 cursor-pointer;
   }
   .link {
     @apply underline font-bold;
+  }
+  .input {
+    @apply border p-3;
   }
 }
