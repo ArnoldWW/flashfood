@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartContext from "../context/CartContext";
 import Logo from "./Logo";
+import MyNavLink from "./MyNavLink";
 
 const Header = () => {
   const { cart } = useContext(CartContext);
@@ -12,11 +13,11 @@ const Header = () => {
         <Logo />
 
         <nav className="flex justify-center gap-5 w-full">
-          <Link to="/">Inicio</Link>
-          <Link to="/menu">Menu</Link>
-          <Link to="/cart" className="relative">
+          <MyNavLink to="/">Inicio</MyNavLink>
+          <MyNavLink to="/menu">Menu</MyNavLink>
+          <MyNavLink to="/cart">
             Carrito <span className="font-bold">({cart.length})</span>
-          </Link>
+          </MyNavLink>
         </nav>
       </div>
     </header>
