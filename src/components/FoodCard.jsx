@@ -10,9 +10,11 @@ const FoodCard = ({ food }) => {
   };
 
   return (
-    <div className="p-5">
-      <img src={image} />
-      <div className="my-5">
+    <div className="flex flex-col gap-5">
+      <div className="max-w-[250px] mx-auto">
+        <img src={image} />
+      </div>
+      <div>
         <h3 className="h3">{title}</h3>
         <p className="mt-2 text-sm">{ingredients}</p>
         <p className="font-bold mt-2 text-sm">${price}</p>

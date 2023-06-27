@@ -6,6 +6,10 @@ body {
   font-family: "rubik", sans-serif;
 }
 
+img {
+  @apply max-w-[100%] w-full;
+}
+
 @layer components {
   .container {
     @apply w-[1000px] mx-auto max-w-[90%];

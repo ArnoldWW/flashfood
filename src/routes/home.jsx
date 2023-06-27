@@ -3,14 +3,16 @@ const Home = () => {
     <>
       <section className="bg-[url('/hero.jpg')] min-h-[400px] bg-cover bg-center relative">
         <div className="absolute bg-[rgba(0,0,0,.8)] w-full h-full p-5 flex justify-center flex-col items-center">
-          <h1 className="h1 text-white">¡Bienvenido a FlashFood!</h1>
-          <p className="text-white">
+          <h1 className="h1 text-white text-center">
+            ¡Bienvenido a FlashFood!
+          </h1>
+          <p className="text-white text-center">
             Las mejores pizzas y hamburgesas en Bogotá.
           </p>
         </div>
       </section>
 
-      <section className="grid grid-cols-2 my-5 gap-5">
+      <section className="grid grid-cols-1 md:grid-cols-2 my-5 gap-5">
         <div className="bg-[url('/pizzas.jpg')] min-h-[300px] bg-cover bg-center relative">
           <div className="absolute bg-[rgba(0,0,0,.8)] w-full h-full p-5 flex justify-center flex-col items-start">
             <h1 className="h2 text-white">Ordena las mejores pizzas.</h1>
