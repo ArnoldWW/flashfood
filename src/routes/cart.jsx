@@ -1,12 +1,45 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import CartContext from "../context/CartContext";
-import CartItem from "../components/CartItem";
 import Modal from "../components/Modal";
-import { useState } from "react";
+import CartItem from "../components/CartItem";
 
 const Cart = () => {
-  const { cart, totalPay } = useContext(CartContext);
+  const { cart, totalPay, addOrder } = useContext(CartContext);
   const [open, setOpen] = useState(false);
+  const [order, setOrder] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    number: "",
+    address: ""
+  });
+
+  const handleChange = (e) => {
+    setOrder({
+      ...order,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const isFieldEmpty = (field) => field.trim() === "";
+
+    if (Object.values(order).some(isFieldEmpty)) {
+      return toast.error("Todos los campos son obligatorios!");
+    }
+
+    const emailRegex =
+      /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    if (!emailRegex.test(order.email)) {
+      return toast.error("Debes colocar un email valido!");
+    }
+
+    setOpen(false);
+    addOrder();
+  };
 
   return (
     <>
@@ -35,17 +68,31 @@ const Cart = () => {
         <header className="mb-3">
           <h3 className="h3">Confirma tus datos para tu pedido.</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae,
-            fuga.
+            Complete los datos para confirmar su pedido, para gestionar el pago
+            nos estaremos contactando con usted.
+          </p>
+          <p>
+            El pago a realizar será de{" "}
+            <span className="font-bold">${totalPay}.</span>
           </p>
         </header>
-        <form className="flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col md:flex-row gap-2 ">
-            <input type="text" className="input w-full" placeholder="Nombre" />
+            <input
+              type="text"
+              className="input w-full"
+              placeholder="Nombre"
+              name="name"
+              value={order.name}
+              onChange={handleChange}
+            />
             <input
               type="text"
               className="input w-full"
               placeholder="Apellido"
+              name="lastname"
+              value={order.lastname}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -53,6 +100,9 @@ const Cart = () => {
               type="email"
               className="input w-full"
               placeholder="Correo Electronico"
+              name="email"
+              value={order.email}
+              onChange={handleChange}
             />
           </div>
           <div className="flex items-center justify-between gap-2">
@@ -61,6 +111,9 @@ const Cart = () => {
               type="tel"
               className="input flex-1"
               placeholder="Numero de contacto"
+              name="number"
+              value={order.number}
+              onChange={handleChange}
             />
           </div>
 
@@ -69,6 +122,9 @@ const Cart = () => {
               type="text"
               className="input w-full"
               placeholder="Direccion de entrega"
+              name="address"
+              value={order.address}
+              onChange={handleChange}
             />
           </div>
 
