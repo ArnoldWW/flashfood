@@ -6,6 +6,7 @@ const MyNavLink = (params) => {
     <NavLink
       {...params}
       className={({ isActive }) => (isActive ? "font-bold" : "hover:underline")}
+      onClick={() => window.scrollTo(0, 0)}
     >
       {params.children}
     </NavLink>
