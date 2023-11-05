@@ -5,7 +5,7 @@ const Modal = ({ children, open, setOpen }) => {
         open ? "flex" : "hidden"
       } justify-center items-center`}
     >
-      <div className="w-[500px] max-w-[90%] bg-white p-5">
+      <div className="w-[500px] max-w-[90%] bg-white p-5 rounded-md">
         <div className="w-full flex justify-end">
           <button className="cursor-pointer" onClick={() => setOpen(false)}>
             <svg
