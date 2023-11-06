@@ -99,7 +99,7 @@ const MENU = {
     {
       id: 11,
       type: 2,
-      image: "/pizzas/5-combo.png",
+      image: "/pizzas/5.png",
       title: "Combo pizza completo",
       ingredients: "pizza peperoni, gaseosa 1.5 Litros, 5 palitos de queso",
       price: 20

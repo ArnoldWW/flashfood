@@ -4,6 +4,7 @@
 
 body {
   font-family: "rubik", sans-serif;
+  @apply text-base;
 }
 
 img {
@@ -24,7 +25,7 @@ img {
     @apply text-xl font-bold my-2;
   }
   .btn {
-    @apply bg-orange-400 py-2 px-5 w-full font-bold capitalize rounded-md;
+    @apply bg-orange-400 py-2 px-5 w-full font-bold capitalize rounded-md text-center;
   }
   .btn:hover {
     @apply bg-orange-500 cursor-pointer;
@@ -33,6 +34,6 @@ img {
     @apply underline font-bold;
   }
   .input {
-    @apply border p-3 rounded-md;
+    @apply border border-gray-300 p-3 rounded-md;
   }
 }

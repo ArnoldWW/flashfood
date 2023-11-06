@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import CartContext from "../context/CartContext";
+import AuthContext from "../context/AuthContext";
 import Modal from "../components/Modal";
 import CartItem from "../components/CartItem";
 
 const Cart = () => {
+  const { userData, logInWithGoogle } = useContext(AuthContext);
   const { cart, totalPay, addOrder } = useContext(CartContext);
   const [open, setOpen] = useState(false);
   const [order, setOrder] = useState({
@@ -14,6 +16,12 @@ const Cart = () => {
     number: "",
     address: ""
   });
+
+  if (userData) {
+    console.log(userData);
+  } else {
+    console.log("no hay usuario");
+  }
 
   const handleChange = (e) => {
     setOrder({
@@ -57,9 +65,19 @@ const Cart = () => {
 
       <section className="py-5 flex flex-col justify-center items-end">
         <h3 className="h3">Total a pagar: ${totalPay}</h3>
-        {cart.length > 0 && (
+        {userData && cart.length > 0 && (
           <button className="btn my-2" onClick={() => setOpen(true)}>
             Realizar Pedido
+          </button>
+        )}
+
+        {!userData && cart.length > 0 && (
+          <button
+            className="btn flex gap-2 justify-center items-center"
+            onClick={logInWithGoogle}
+          >
+            <img src="/google.svg" className="w-4" />
+            Iniciar sesion con Google
           </button>
         )}
       </section>
@@ -128,7 +146,9 @@ const Cart = () => {
             />
           </div>
 
-          <input type="submit" className="btn" value="confirmar pedido" />
+          {userData && (
+            <input type="submit" className="btn" value="confirmar pedido" />
+          )}
         </form>
       </Modal>
     </>

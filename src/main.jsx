@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import Home from "./routes/home.jsx";
-import Menu from "./routes/menu.jsx";
-import Cart from "./routes/cart.jsx";
-import NotFound from "./routes/NotFound.jsx";
+import App from "./App";
+import Home from "./routes/home";
+import Menu from "./routes/menu";
+import Cart from "./routes/cart";
+import NotFound from "./routes/NotFound";
 
 import {
   createBrowserRouter,
