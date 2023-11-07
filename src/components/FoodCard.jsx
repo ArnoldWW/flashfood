@@ -1,21 +1,24 @@
 import { useContext } from "react";
 import CartContext from "../context/CartContext";
 
-const FoodCard = ({ food }) => {
+const FoodCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
-  const { id, type, image, title, ingredients, price } = food;
+  const {
+    id,
+    data: { name, ingredients, price, img }
+  } = product;
 
   const handleClickAdd = () => {
-    addToCart(id, type);
+    //addToCart(product.id, type);
   };
 
   return (
     <div className="flex flex-col gap-5">
       <div className="max-w-[250px] mx-auto">
-        <img src={image} />
+        <img src={img} />
       </div>
       <div>
-        <h3 className="h3">{title}</h3>
+        <h3 className="h3">{name}</h3>
         <p className="mt-2 text-sm">{ingredients}</p>
         <p className="font-bold mt-2 text-sm">${price}</p>
       </div>

@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signOut
 } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -29,7 +30,7 @@ const AuthProvider = ({ children }) => {
     console.log("log In");
     try {
       const user = await signInWithPopup(auth, provider);
-      console.log(user);
+      toast.success("Sesion iniciada!");
     } catch (error) {
       // Handle Errors here.
       const errorCode = error.code;
@@ -47,6 +48,7 @@ const AuthProvider = ({ children }) => {
     if (res) {
       try {
         await signOut(auth);
+        toast.success("Sesion cerrada!");
       } catch (error) {
         console.error(error);
       }

@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { getFirestore, getDocs, collection } from "firebase/firestore";
 
 const CartContext = createContext();
 
@@ -110,6 +111,7 @@ const MENU = {
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [totalPay, setTotalPay] = useState(0);
+  const db = getFirestore();
 
   useEffect(() => {
     const reduceCart = cart.reduce((accumulator, currentValue) => {
@@ -174,7 +176,6 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
-        MENU,
         totalPay,
         setCart,
         addToCart,

@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 const MyNavLink = (params) => {
-  console.log(params);
   return (
     <NavLink
       {...params}

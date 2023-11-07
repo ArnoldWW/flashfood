@@ -1,30 +1,56 @@
-import { useContext } from "react";
-import CartContext from "../context/CartContext";
+import { useContext, useEffect, useState } from "react";
 import FoodCard from "../components/FoodCard";
+import MenuContext from "../context/MenuContext";
 
 const Menu = () => {
-  const { MENU } = useContext(CartContext);
+  const {
+    loading,
+    menu,
+    category,
+    getMenu,
+    getProductsByCategory,
+    setCategory
+  } = useContext(MenuContext);
+
+  useEffect(() => {
+    if (category === "") {
+      getMenu();
+    }
+  }, [loading]);
+
+  const handleChange = (e) => {
+    setCategory(e.target.value);
+    if (e.target.value === "") {
+      getMenu();
+    } else {
+      getProductsByCategory(e);
+    }
+  };
+
+  if (loading === 1) {
+    return <p>cargando menu...</p>;
+  }
 
   return (
     <>
       <h1 className="h1 text-center">Nuestro Menú</h1>
 
-      <section className="mt-5">
-        <h2 className="h2">Hamburgesas</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {MENU.burgers.map((burger) => (
-            <FoodCard food={burger} key={burger.id} />
-          ))}
-        </div>
+      <section className="my-3">
+        <select
+          className="py-2 px-5 bg-white border border-gray-300 rounded-md"
+          onChange={handleChange}
+          value={category}
+        >
+          <option value="">Todos los productos</option>
+          <option value="ha">Hamburgesas</option>
+          <option value="pi">Pizzas</option>
+        </select>
       </section>
 
       <section className="mt-5">
-        <h2 className="h2">Pizzas</h2>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {MENU.pizzas.map((pizza) => (
-            <FoodCard food={pizza} key={pizza.id} />
+          {menu.map((product) => (
+            <FoodCard product={product} key={product.id} />
           ))}
         </div>
       </section>
