@@ -4,7 +4,8 @@ import { toast } from "react-hot-toast";
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
+  const localStorageCart = JSON.parse(localStorage.getItem("cart")) || [];
+  const [cart, setCart] = useState(localStorageCart);
   const [totalPay, setTotalPay] = useState(0);
 
   useEffect(() => {
