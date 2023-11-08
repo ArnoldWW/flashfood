@@ -19,7 +19,9 @@ const Header = () => {
           <div className="flex gap-5 flex-1">
             <MyNavLink to="/">Inicio</MyNavLink>
             <MyNavLink to="/menu">Menú</MyNavLink>
-            <MyNavLink to="/cart">Carrito</MyNavLink>
+            <MyNavLink to="/cart">
+              Carrito <span className="font-bold">({cart.length})</span>
+            </MyNavLink>
           </div>
 
           <div className="flex justify-between gap-2 items-center">
