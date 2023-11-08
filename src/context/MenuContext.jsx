@@ -21,7 +21,7 @@ const MenuProvider = ({ children }) => {
       const querySnapshot = await getDocs(collection(db, "menu"));
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        const product = { id: doc.id, data: doc.data() };
+        const product = doc.data();
         products.push(product);
       });
       setMenu(products);
@@ -43,7 +43,8 @@ const MenuProvider = ({ children }) => {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        const product = { id: doc.id, data: doc.data() };
+        const product = doc.data();
+        console.log(product);
         products.push(product);
       });
       setMenu(products);

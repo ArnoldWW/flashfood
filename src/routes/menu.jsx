@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import FoodCard from "../components/FoodCard";
+import ProductCard from "../components/ProductCard";
 import MenuContext from "../context/MenuContext";
 
 const Menu = () => {
@@ -50,7 +50,7 @@ const Menu = () => {
       <section className="mt-5">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {menu.map((product) => (
-            <FoodCard product={product} key={product.id} />
+            <ProductCard product={product} key={product.id} />
           ))}
         </div>
       </section>

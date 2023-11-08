@@ -1,15 +1,12 @@
 import { useContext } from "react";
 import CartContext from "../context/CartContext";
 
-const FoodCard = ({ product }) => {
+const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
-  const {
-    id,
-    data: { name, ingredients, price, img }
-  } = product;
+  const { id, name, ingredients, price, img } = product;
 
   const handleClickAdd = () => {
-    //addToCart(product.id, type);
+    addToCart(product);
   };
 
   return (
@@ -29,4 +26,4 @@ const FoodCard = ({ product }) => {
   );
 };
 
-export default FoodCard;
+export default ProductCard;
