@@ -3,7 +3,6 @@ import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
 import Logo from "./Logo";
 import MyNavLink from "./MyNavLink";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   const { userData, logInWithGoogle, logOut } = useContext(AuthContext);
@@ -20,9 +19,7 @@ const Header = () => {
           <div className="flex gap-5 flex-1">
             <MyNavLink to="/">Inicio</MyNavLink>
             <MyNavLink to="/menu">Menú</MyNavLink>
-            <MyNavLink to="/cart">
-              Carrito <span className="font-bold">({cart.length})</span>
-            </MyNavLink>
+            <MyNavLink to="/cart">Carrito</MyNavLink>
           </div>
 
           <div className="flex justify-between gap-2 items-center">
