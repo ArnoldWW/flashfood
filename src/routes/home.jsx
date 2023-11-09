@@ -7,41 +7,43 @@ const Home = () => {
             ¡Bienvenido a FlashFood!
           </h1>
           <p className="text-white text-center">
-            Las mejores pizzas y hamburgesas en Bogotá.
+            Deliciosamente rápido, simplemente irresistible.
           </p>
         </div>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 my-5 gap-5">
-        <div className="bg-[url('/pizzas.jpg')] min-h-[300px] bg-cover bg-center relative rounded-md overflow-hidden">
-          <div className="absolute bg-[rgba(0,0,0,.6)] w-full h-full p-5 flex justify-center flex-col items-start">
-            <h1 className="h2 text-white">Ordena las mejores pizzas.</h1>
-            <p className="text-white">
-              Tenemos deliciosas pizzas, variadas y con ingredientes premium.
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5">
+        <section className="bg-[url('/pizzas.jpg')] min-h-[300px] bg-cover bg-center relative rounded-md overflow-hidden">
+          <div className="absolute bg-[rgba(0,0,0,.6)] w-full h-full p-5 flex justify-center flex-col items-center">
+            <h2 className="h2 text-white text-center">¡Pizzas de todo tipo!</h2>
+            <p className="text-white text-center">
+              En nuestro menú podras encontrar pizzas para todos los paladares.
             </p>
           </div>
-        </div>
+        </section>
 
-        <div className="bg-[url('/burgers.jpg')] min-h-[300px] bg-cover bg-center relative rounded-md overflow-hidden">
-          <div className="absolute bg-[rgba(0,0,0,.6)] w-full h-full p-5 flex justify-center flex-col items-start">
-            <h1 className="h2 text-white">Ordena las mejores hamburgesas.</h1>
-            <p className="text-white">
-              Tenemos deliciosas hamburgesas, variadas y con ingredientes
-              premium.
+        <section className="bg-[url('/burgers.jpg')] min-h-[300px] bg-cover bg-center relative rounded-md overflow-hidden">
+          <div className="absolute bg-[rgba(0,0,0,.6)] w-full h-full p-5 flex justify-center flex-col items-center">
+            <h2 className="h2 text-white text-center">
+              ¡Hamburgesas variadas!
+            </h2>
+            <p className="text-white text-center">
+              En nuestro menú podras encontrar hamburgesas unicas y con un sabor
+              diferencial.
             </p>
           </div>
-        </div>
+        </section>
       </section>
 
-      <section>
-        <div className="bg-[url('/delivery.jpg')] min-h-[400px] bg-cover bg-center relative rounded-md overflow-hidden">
-          <div className="absolute bg-[rgba(0,0,0,.6)] w-full h-full p-5 flex justify-center flex-col items-center">
-            <h1 className="h2 text-white">Domicilios rapidos y seguros.</h1>
-            <p className="text-white">
-              Ordena con la tranquilidad que tu orden llegará a la puerta de tu
-              casa a la hora programada.
-            </p>
-          </div>
+      <section className="bg-[url('/delivery.jpg')] min-h-[400px] bg-cover bg-center relative rounded-md overflow-hidden">
+        <div className="absolute bg-[rgba(0,0,0,.6)] w-full h-full p-5 flex justify-center flex-col items-center">
+          <h1 className="h2 text-white text-center">
+            Domicilios rapidos y seguros.
+          </h1>
+          <p className="text-white text-center">
+            Ordena con la tranquilidad que tu orden llegará a la puerta de tu
+            casa a la hora programada.
+          </p>
         </div>
       </section>
     </>
