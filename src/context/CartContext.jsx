@@ -47,7 +47,7 @@ const CartProvider = ({ children }) => {
       }
 
       return toast.success(
-        `${itemUpdated.quantity} unidades de la "${itemUpdated.title}"`
+        `${itemUpdated.quantity} unidades de la "${itemUpdated.name}"`
       );
     }
 

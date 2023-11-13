@@ -64,9 +64,9 @@ const Cart = () => {
       </section>
 
       <section className="py-5 flex flex-col justify-center items-end">
-        <h3 className="h3">Total a pagar: ${totalPay}</h3>
+        <h3 className="h3 mb-5">Total a pagar: ${totalPay}</h3>
         {userData && cart.length > 0 && (
-          <button className="btn my-2" onClick={() => setOpen(true)}>
+          <button className="btn" onClick={() => setOpen(true)}>
             Realizar Pedido
           </button>
         )}
