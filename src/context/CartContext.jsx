@@ -72,11 +72,6 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const addOrder = () => {
-    toast.success("Pedido realizado.");
-    setCart([]);
-  };
-
   return (
     <CartContext.Provider
       value={{
@@ -84,8 +79,7 @@ const CartProvider = ({ children }) => {
         totalPay,
         setCart,
         addToCart,
-        deleteCartItem,
-        addOrder
+        deleteCartItem
       }}
     >
       {children}

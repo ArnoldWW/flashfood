@@ -1,24 +1,29 @@
 import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import CartContext from "../context/CartContext";
 import AuthContext from "../context/AuthContext";
 import Modal from "../components/Modal";
 import CartItem from "../components/CartItem";
+import OrderContext from "../context/OrderContext";
+import { generateId, generateIDWithOnlyNumbers } from "../helpers";
 
 const Cart = () => {
   const { userData, logInWithGoogle } = useContext(AuthContext);
-  const { cart, totalPay, addOrder } = useContext(CartContext);
+  const { cart, totalPay } = useContext(CartContext);
+  const { addOrder } = useContext(OrderContext);
   const [open, setOpen] = useState(false);
   const [order, setOrder] = useState({
     number: "",
     address: ""
   });
+  const navigate = useNavigate();
 
-  if (userData) {
+  /* if (userData) {
     console.log(userData);
   } else {
     console.log("no hay usuario");
-  }
+  } */
 
   const handleChange = (e) => {
     setOrder({
@@ -27,23 +32,38 @@ const Cart = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const isFieldEmpty = (field) => field.trim() === "";
-
+    console.log(Object.values(order).some(isFieldEmpty));
     if (Object.values(order).some(isFieldEmpty)) {
       return toast.error("Todos los campos son obligatorios!");
     }
 
-    const emailRegex =
-      /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    if (!emailRegex.test(order.email)) {
-      return toast.error("Debes colocar un email valido!");
-    }
+    //Generar una orden con ID unico
+    const completeOrder = {
+      id: generateId(),
+      userId: userData.uid,
+      orderNumber: generateIDWithOnlyNumbers(),
+      status: "en camino",
+      totalPay,
+      cart: [...cart],
+      ...order
+    };
 
+    //limpiar estados
+    setOrder({
+      number: "",
+      address: ""
+    });
+
+    //cerrar modal
     setOpen(false);
-    addOrder();
+
+    //Añadir una orden
+    await addOrder(completeOrder);
+    navigate("/order");
   };
 
   return (
