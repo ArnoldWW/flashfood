@@ -10,9 +10,6 @@ const Cart = () => {
   const { cart, totalPay, addOrder } = useContext(CartContext);
   const [open, setOpen] = useState(false);
   const [order, setOrder] = useState({
-    name: "",
-    lastname: "",
-    email: "",
     number: "",
     address: ""
   });
@@ -55,39 +52,44 @@ const Cart = () => {
         Carrito ({cart.length} producto/s añadidos)
       </h1>
 
-      <section className="flex flex-col gap-5 py-5 border-b">
+      <section className="flex flex-col gap-5">
         {cart.length > 0 ? (
           cart.map((item) => <CartItem item={item} key={item.id} />)
         ) : (
-          <p className="text-center">Añade tu primer producto al carrito</p>
+          <p className="h3 text-center">Tu carrito esta vacio.</p>
         )}
       </section>
 
-      <section className="py-5 flex flex-col justify-center items-end">
-        <h3 className="h3 mb-5">Total a pagar: ${totalPay}</h3>
-        {userData && cart.length > 0 && (
+      {cart.length > 0 && (
+        <>
+          <hr />
+          <h3 className="h3 text-right my-5">Total a pagar: ${totalPay}</h3>
+        </>
+      )}
+      {userData && cart.length > 0 && (
+        <>
           <button className="btn" onClick={() => setOpen(true)}>
             Realizar Pedido
           </button>
-        )}
+        </>
+      )}
 
-        {!userData && cart.length > 0 && (
-          <button
-            className="btn flex gap-2 justify-center items-center"
-            onClick={logInWithGoogle}
-          >
-            <img src="/google.svg" className="w-4" />
-            Iniciar sesion con Google
-          </button>
-        )}
-      </section>
+      {!userData && cart.length > 0 && (
+        <button
+          className="btn flex gap-2 justify-center items-center"
+          onClick={logInWithGoogle}
+        >
+          <img src="/google.svg" className="w-4" />
+          Iniciar sesion con Google
+        </button>
+      )}
 
       <Modal open={open} setOpen={setOpen}>
         <header className="mb-3">
           <h3 className="h3">Confirma tus datos para tu pedido.</h3>
           <p>
             Complete los datos para confirmar su pedido, para gestionar el pago
-            nos estaremos contactando con usted.
+            nos estaremos contactando con usted al numero de contacto.
           </p>
           <p>
             El pago a realizar será de{" "}
@@ -95,38 +97,11 @@ const Cart = () => {
           </p>
         </header>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-          <div className="flex flex-col md:flex-row gap-2 ">
-            <input
-              type="text"
-              className="input w-full"
-              placeholder="Nombre"
-              name="name"
-              value={order.name}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              className="input w-full"
-              placeholder="Apellido"
-              name="lastname"
-              value={order.lastname}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <input
-              type="email"
-              className="input w-full"
-              placeholder="Correo Electronico"
-              name="email"
-              value={order.email}
-              onChange={handleChange}
-            />
-          </div>
           <div className="flex items-center justify-between gap-2">
             <span>+57</span>
             <input
               type="tel"
+              pattern="[1-9]{1}[0-9]{9}"
               className="input flex-1"
               placeholder="Numero de contacto"
               name="number"
@@ -139,7 +114,7 @@ const Cart = () => {
             <input
               type="text"
               className="input w-full"
-              placeholder="Direccion de entrega"
+              placeholder="Direccion de entrega Ej. Calle 50 Sur #30"
               name="address"
               value={order.address}
               onChange={handleChange}
