@@ -19,6 +19,7 @@ const Header = () => {
           <div className="flex gap-5 flex-1">
             <MyNavLink to="/">Inicio</MyNavLink>
             <MyNavLink to="/menu">Menú</MyNavLink>
+            {userData && <MyNavLink to="/order">Pedidos</MyNavLink>}
             <MyNavLink to="/cart">
               Carrito <span className="font-bold">({cart.length})</span>
             </MyNavLink>

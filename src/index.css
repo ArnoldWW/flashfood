@@ -16,16 +16,16 @@ img {
     @apply w-[1000px] mx-auto max-w-[90%];
   }
   .h1 {
-    @apply text-3xl font-bold my-3;
+    @apply text-3xl font-bold my-3 uppercase;
   }
   .h2 {
-    @apply text-2xl font-bold my-2;
+    @apply text-2xl font-bold my-2 uppercase;
   }
   .h3 {
-    @apply text-xl font-bold my-2;
+    @apply text-xl font-bold my-2 uppercase;
   }
   .btn {
-    @apply bg-orange-400 py-2 px-5 w-full font-bold capitalize rounded-md text-center;
+    @apply bg-orange-400 py-2 px-5 w-full font-bold uppercase rounded-md text-center;
   }
   .btn:hover {
     @apply bg-orange-500 cursor-pointer;

@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { AuthProvider } from "./context/AuthContext";
+import { MenuProvider } from "./context/MenuContext";
+import { CartProvider } from "./context/CartContext";
+import { OrderProvider } from "./context/OrderContext";
 import Home from "./routes/home";
 import Menu from "./routes/menu";
 import Cart from "./routes/cart";
 import NotFound from "./routes/NotFound";
+import Order from "./routes/order";
 
 import {
   createBrowserRouter,
@@ -36,6 +41,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
       </Route>
     </Route>
   )
@@ -43,6 +49,14 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <MenuProvider>
+        <CartProvider>
+          <OrderProvider>
+            <RouterProvider router={router} />
+          </OrderProvider>
+        </CartProvider>
+      </MenuProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
