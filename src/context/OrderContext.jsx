@@ -1,6 +1,15 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import "../firebase";
-import { doc, getFirestore, setDoc, serverTimestamp } from "firebase/firestore";
+import {
+  doc,
+  getFirestore,
+  setDoc,
+  serverTimestamp,
+  query,
+  collection,
+  where,
+  getDocs
+} from "firebase/firestore";
 import toast from "react-hot-toast";
 import CartContext from "./CartContext";
 
@@ -29,8 +38,28 @@ const OrderProvider = ({ children }) => {
     }
   };
 
+  const getOrders = async (user) => {
+    try {
+      const q = query(
+        collection(db, "orders"),
+        where("userId", "==", user.uid)
+      );
+
+      const querySnapshot = await getDocs(q);
+      let orders = [];
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        orders.push(doc.data());
+      });
+
+      return orders;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <OrderContext.Provider value={{ addOrder }}>
+    <OrderContext.Provider value={{ addOrder, getOrders }}>
       {children}
     </OrderContext.Provider>
   );
