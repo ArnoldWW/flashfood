@@ -18,6 +18,8 @@ import {
   RouterProvider
 } from "react-router-dom";
 import "./index.css";
+import Login from "./routes/login";
+import Signup from "./routes/signup";
 
 /* const router = createBrowserRouter([
   {
@@ -36,14 +38,22 @@ import "./index.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />} errorElement={<NotFound />}>
-      <Route>
-        <Route index element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/order" element={<Order />} />
+    <>
+      <Route path="/auth">
+        <Route>
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/signup" element={<Signup />} />
+        </Route>
       </Route>
-    </Route>
+      <Route path="/" element={<App />} errorElement={<NotFound />}>
+        <Route>
+          <Route index element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
+        </Route>
+      </Route>
+    </>
   )
 );
 
