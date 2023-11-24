@@ -5,6 +5,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { MenuProvider } from "./context/MenuContext";
 import { CartProvider } from "./context/CartContext";
 import { OrderProvider } from "./context/OrderContext";
+import { Toaster } from "react-hot-toast";
 import Home from "./routes/home";
 import Menu from "./routes/menu";
 import Cart from "./routes/cart";
@@ -64,6 +65,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <CartProvider>
           <OrderProvider>
             <RouterProvider router={router} />
+            <Toaster position="top-right" reverseOrder={false} />
           </OrderProvider>
         </CartProvider>
       </MenuProvider>
