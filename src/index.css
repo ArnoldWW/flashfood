@@ -13,8 +13,9 @@ img {
 
 @layer components {
   .container {
-    @apply w-[1000px] mx-auto max-w-[90%];
+    @apply w-[1000px] mx-auto max-w-[95%];
   }
+
   .h1 {
     @apply text-3xl font-bold my-3 uppercase;
   }
@@ -34,6 +35,6 @@ img {
     @apply underline font-bold;
   }
   .input {
-    @apply border border-gray-300 p-3 rounded-md;
+    @apply border border-gray-300 p-2 rounded-md;
   }
 }

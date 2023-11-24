@@ -5,7 +5,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   onAuthStateChanged,
-  signOut
+  signOut,
+  createUserWithEmailAndPassword,
+  updateProfile
 } from "firebase/auth";
 import toast from "react-hot-toast";
 
@@ -36,9 +38,36 @@ const AuthProvider = ({ children }) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // The email of the user's account used.
-      const email = error.customData.email;
+      const errorEmail = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
+      toast.error(errorCode);
+      toast.error(errorEmail);
+      toast.error(credential);
+    }
+  };
+
+  const createAccount = async (email, password) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  const editProfile = async (name) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: name
+      });
+      setUserData(userData);
+    } catch (error) {
+      return console.log(error);
     }
   };
 
@@ -60,6 +89,8 @@ const AuthProvider = ({ children }) => {
       value={{
         userData,
         logInWithGoogle,
+        createAccount,
+        editProfile,
         logOut
       }}
     >

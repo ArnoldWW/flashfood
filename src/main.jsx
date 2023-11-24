@@ -21,6 +21,7 @@ import {
 import "./index.css";
 import Login from "./routes/login";
 import Signup from "./routes/signup";
+import AuthLayout from "./layouts/AuthLayout";
 
 /* const router = createBrowserRouter([
   {
@@ -40,11 +41,15 @@ import Signup from "./routes/signup";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/auth">
-        <Route>
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/signup" element={<Signup />} />
-        </Route>
+      <Route path="/login" element={<AuthLayout />} errorElement={<NotFound />}>
+        <Route index element={<Login />} />
+      </Route>
+      <Route
+        path="/signup"
+        element={<AuthLayout />}
+        errorElement={<NotFound />}
+      >
+        <Route index element={<Signup />} />
       </Route>
       <Route path="/" element={<App />} errorElement={<NotFound />}>
         <Route>

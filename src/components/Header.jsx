@@ -28,7 +28,7 @@ const Header = () => {
           <div className="flex justify-between gap-2 items-center">
             {userData ? (
               <div className="flex justify-between gap-2 items-center">
-                <img src={userData.photoURL} className="w-5 rounded-full" />
+                {/* <img src={userData.photoURL} className="w-5 rounded-full" /> */}
                 <p>{userData.displayName} / </p>
                 <button className="btn w-auto" onClick={logOut}>
                   cerrar sesion
