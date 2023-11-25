@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Orders = () => {
   const { userData } = useContext(AuthContext);
   const { getOrders } = useContext(OrderContext);
-  const [orders, setOrders] = useState([]);
+  const [orderList, setOrderList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Orders = () => {
     if (userData) {
       const fetchOrders = async () => {
         const res = await getOrders(userData);
-        setOrders(res);
+        setOrderList(res);
       };
       fetchOrders();
     }
@@ -29,8 +29,8 @@ const Orders = () => {
     <>
       <h1 className="h1 text-center">Pedidos</h1>
 
-      {orders.length > 0 ? (
-        orders.map((order) => {
+      {orderList.length > 0 ? (
+        orderList.map((order) => {
           return <p key={order.id}>{order.id}</p>;
         })
       ) : (
