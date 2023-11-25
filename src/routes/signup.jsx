@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import useCheckAuth from "../hooks/useCheckAuth";
 
 const Signup = () => {
-  const { createAccount, editProfile } = useContext(AuthContext);
-  const [userData, setUserData] = useState({
+  const { userData, createAccount, editProfile } = useContext(AuthContext);
+  const [userFormData, setUserFomrData] = useState({
     name: "",
     email: "",
     password: "",
@@ -18,8 +18,8 @@ const Signup = () => {
   useCheckAuth();
 
   const handleChange = (e) => {
-    setUserData({
-      ...userData,
+    setUserFomrData({
+      ...userFormData,
       [e.target.name]: e.target.value
     });
   };
@@ -27,10 +27,10 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const { name, email, password, password2 } = userData;
+    const { name, email, password, password2 } = userFormData;
 
     //validations
-    const values = Object.values(userData);
+    const values = Object.values(userFormData);
 
     const empty = values.some((value) => value.trim() === "");
 
@@ -39,7 +39,6 @@ const Signup = () => {
     }
 
     /* console.log(emailRegex.test(email.trim())); */
-
     if (!emailRegex.test(email.trim())) {
       return toast.error("Correo electronico no valido.");
     }
@@ -48,13 +47,14 @@ const Signup = () => {
       return toast.error("Las contraseñas no coinciden.");
     }
 
+    if (password.trim() < 6 || password2.trim() < 6) {
+      return toast.error("La contraseña debe ser de al menos 6 caracteres.");
+    }
+
     //create account
-    try {
-      await createAccount(email.trim(), password.trim());
-      await editProfile(name.trim());
+    await createAccount(name.trim(), email.trim(), password.trim());
+    if (userData) {
       navigate("/");
-    } catch (error) {
-      toast.error(error);
     }
   };
 
@@ -69,7 +69,7 @@ const Signup = () => {
             name="name"
             className="input block w-full"
             placeholder="Nombre"
-            value={userData.name}
+            value={userFormData.name}
             onChange={handleChange}
           />
         </div>
@@ -80,7 +80,7 @@ const Signup = () => {
             name="email"
             className="input block w-full"
             placeholder="Correo electronico"
-            value={userData.email}
+            value={userFormData.email}
             onChange={handleChange}
           />
         </div>
@@ -91,7 +91,7 @@ const Signup = () => {
             name="password"
             className="input block w-full"
             placeholder="Contraseña"
-            value={userData.password}
+            value={userFormData.password}
             onChange={handleChange}
           />
         </div>
@@ -102,7 +102,7 @@ const Signup = () => {
             name="password2"
             className="input block w-full"
             placeholder="Repite tu contraseña"
-            value={userData.password2}
+            value={userFormData.password2}
             onChange={handleChange}
           />
         </div>

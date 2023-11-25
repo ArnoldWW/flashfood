@@ -3,9 +3,10 @@ import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
 import Logo from "./Logo";
 import MyNavLink from "./MyNavLink";
+import MyLink from "./MyLink";
 
 const Header = () => {
-  const { userData, logInWithGoogle, logOut } = useContext(AuthContext);
+  const { userData, logOut } = useContext(AuthContext);
   const { cart } = useContext(CartContext);
 
   console.log(userData);
@@ -35,13 +36,11 @@ const Header = () => {
                 </button>
               </div>
             ) : (
-              <button
-                className="btn flex gap-2 justify-center items-center"
-                onClick={logInWithGoogle}
-              >
-                <img src="/google.svg" className="w-4" />
-                Iniciar sesion con Google
-              </button>
+              <>
+                <MyLink to="/login">Iniciar Sesion</MyLink>
+                <span>/</span>
+                <MyLink to="/signup">Crear Cuenta</MyLink>
+              </>
             )}
           </div>
         </nav>

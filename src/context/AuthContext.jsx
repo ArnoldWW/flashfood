@@ -7,7 +7,8 @@ import {
   onAuthStateChanged,
   signOut,
   createUserWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  signInWithEmailAndPassword
 } from "firebase/auth";
 import toast from "react-hot-toast";
 
@@ -42,21 +43,22 @@ const AuthProvider = ({ children }) => {
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       toast.error(errorCode);
-      toast.error(errorEmail);
-      toast.error(credential);
+      toast.error("Error/cancelacion del inicio de sesion con Google.");
     }
   };
 
-  const createAccount = async (email, password) => {
+  const createAccount = async (name, email, password) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
+      await editProfile(name);
+      toast.success("Cuenta Creada!");
     } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+      toast.error(error.code);
+      return console.log(error);
     }
   };
 
@@ -68,6 +70,17 @@ const AuthProvider = ({ children }) => {
       setUserData(userData);
     } catch (error) {
       return console.log(error);
+    }
+  };
+
+  const logIn = async (email, password) => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      console.log(user);
+    } catch (error) {
+      const errorMessage = error.message;
+      toast.error(error.code);
+      console.log(errorMessage);
     }
   };
 
@@ -91,6 +104,7 @@ const AuthProvider = ({ children }) => {
         logInWithGoogle,
         createAccount,
         editProfile,
+        logIn,
         logOut
       }}
     >

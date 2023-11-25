@@ -7,6 +7,7 @@ import Modal from "../components/Modal";
 import CartItem from "../components/CartItem";
 import OrderContext from "../context/OrderContext";
 import { generateId, generateIDWithOnlyNumbers } from "../helpers";
+import MyLink from "../components/MyLink";
 
 const Cart = () => {
   const { userData, logInWithGoogle } = useContext(AuthContext);
@@ -95,13 +96,17 @@ const Cart = () => {
       )}
 
       {!userData && cart.length > 0 && (
-        <button
-          className="btn flex gap-2 justify-center items-center"
-          onClick={logInWithGoogle}
-        >
-          <img src="/google.svg" className="w-4" />
-          Iniciar sesion con Google
-        </button>
+        <div className="flex flex-col gap-2">
+          <button
+            className="btn flex gap-2 justify-center items-center"
+            onClick={logInWithGoogle}
+          >
+            <img src="/google.svg" className="w-4" />
+            Iniciar sesion con Google
+          </button>
+
+          <MyLink to="/login">Iniciar sesion con correo y contraseña.</MyLink>
+        </div>
       )}
 
       <Modal open={open} setOpen={setOpen}>
