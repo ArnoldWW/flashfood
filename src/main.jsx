@@ -10,7 +10,7 @@ import Home from "./routes/home";
 import Menu from "./routes/menu";
 import Cart from "./routes/cart";
 import NotFound from "./routes/NotFound";
-import Order from "./routes/order";
+import Orders from "./routes/orders";
 
 import {
   createBrowserRouter,
@@ -56,7 +56,7 @@ const router = createBrowserRouter(
           <Route index element={<Home />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/order" element={<Orders />} />
         </Route>
       </Route>
     </>

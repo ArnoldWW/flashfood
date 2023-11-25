@@ -3,7 +3,7 @@ import OrderContext from "../context/OrderContext";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const Order = () => {
+const Orders = () => {
   const { userData } = useContext(AuthContext);
   const { getOrders } = useContext(OrderContext);
   const [orders, setOrders] = useState([]);
@@ -19,7 +19,6 @@ const Order = () => {
     if (userData) {
       const fetchOrders = async () => {
         const res = await getOrders(userData);
-        console.log(res);
         setOrders(res);
       };
       fetchOrders();
@@ -41,4 +40,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default Orders;
