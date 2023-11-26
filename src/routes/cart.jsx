@@ -64,7 +64,7 @@ const Cart = () => {
 
     //Añadir una orden
     await addOrder(completeOrder);
-    navigate("/order");
+    navigate("/orders");
   };
 
   return (
