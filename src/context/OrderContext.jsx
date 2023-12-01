@@ -8,16 +8,19 @@ import {
   query,
   collection,
   where,
-  getDocs
+  getDocs,
+  orderBy
 } from "firebase/firestore";
 import toast from "react-hot-toast";
 import CartContext from "./CartContext";
+import AuthContext from "./AuthContext";
 
 const OrderContext = createContext();
 
 const OrderProvider = ({ children }) => {
   const db = getFirestore();
   const { setCart } = useContext(CartContext);
+  const { userData } = useContext(AuthContext);
 
   const addOrder = async (order) => {
     console.log("adding order...", order);
@@ -38,11 +41,14 @@ const OrderProvider = ({ children }) => {
     }
   };
 
-  const getOrders = async (user) => {
+  const getOrders = async () => {
+    if (!userData) return;
+
     try {
       const q = query(
         collection(db, "orders"),
-        where("userId", "==", user.uid)
+        where("userId", "==", userData.uid),
+        orderBy("date", "desc")
       );
 
       const querySnapshot = await getDocs(q);

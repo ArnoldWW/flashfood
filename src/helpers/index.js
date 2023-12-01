@@ -20,3 +20,19 @@ export function generateIDWithOnlyNumbers(length = 16) {
   }
   return id;
 }
+
+export function timestampToDate(timestamp) {
+  // Create a new Date object from the Timestamp
+  const date = new Date(
+    timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+  );
+
+  // Format the date using the toLocaleDateString() method, including the hour
+  const formattedDate = date.toLocaleDateString("es-CO", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true
+  });
+
+  return formattedDate;
+}
