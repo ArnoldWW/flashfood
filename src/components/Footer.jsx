@@ -16,7 +16,7 @@ const Footer = () => {
       <p>Imagenes tomadas de:</p>
       <ul className="list-disc ml-5">
         {links.map((link) => (
-          <li>
+          <li key={link.name}>
             <a
               href={link.url}
               className="link"
