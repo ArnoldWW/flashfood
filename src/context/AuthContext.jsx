@@ -42,8 +42,9 @@ const AuthProvider = ({ children }) => {
       const errorEmail = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-      toast.error(errorCode);
-      toast.error("Error/cancelacion del inicio de sesion con Google.");
+      //toast.error(errorCode);
+      //toast.error("Cancelacion del inicio de sesion con Google.");
+      console.log(errorCode);
     }
   };
 
@@ -79,7 +80,7 @@ const AuthProvider = ({ children }) => {
       console.log(user);
     } catch (error) {
       const errorMessage = error.message;
-      toast.error(error.code);
+      toast.error("Error al iniciar sesion, revisa el correo y la contraseña.");
       console.log(errorMessage);
     }
   };
