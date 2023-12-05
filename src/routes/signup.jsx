@@ -47,7 +47,7 @@ const Signup = () => {
       return toast.error("Las contraseñas no coinciden.");
     }
 
-    if (password.trim() < 6 || password2.trim() < 6) {
+    if (password.trim().length < 6 || password2.trim().length < 6) {
       return toast.error("La contraseña debe ser de al menos 6 caracteres.");
     }
 
