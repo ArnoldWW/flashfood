@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import useCheckAuth from "../hooks/useCheckAuth";
+import toast from "react-hot-toast";
 import MyLink from "../components/MyLink";
 
 const Login = () => {
